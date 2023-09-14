@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import Card from "../Card/Card";
+import PropTypes from 'prop-types';
 
 
-const Cards = () => {
+const Cards = ({handleAddToCarts}) => {
     const [cardData, setCardData] = useState([])
     useEffect(() => {
         fetch('data.json')
@@ -16,10 +17,13 @@ const Cards = () => {
                 cardData.map(card => <Card
                     key={card.id}
                     card={card}
+                    handleAddToCarts={handleAddToCarts}
                 ></Card>)
             }
         </div>
     );
 };
-
+Cards.propTypes={
+    handleAddToCarts:PropTypes.func.isRequired,
+}
 export default Cards;

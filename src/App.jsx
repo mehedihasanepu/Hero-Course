@@ -4,23 +4,38 @@ import './App.css'
 import Cards from './component/Cards/Cards'
 import Carts from './component/Carts/Carts'
 
+
 function App() {
   const [carts, setCarts] = useState([])
-  const [totalCreditHour, setTotalCreditHour]=useState(0)
+  const [totalCreditHour, setTotalCreditHour] = useState(0)
+  const [remaining, setRemaining] = useState(20)
 
 
   const handleAddToCarts = card => {
+    const isExist = carts.find((course) => course.id == card.id);
     let totalCreditHour = card.credit;
-    carts.forEach(hour => { totalCreditHour = totalCreditHour+ hour.credit })
-    setTotalCreditHour(totalCreditHour);
-    console.log(totalCreditHour);
 
-    const newCarts = [...carts, card];
-    setCarts(newCarts)
+    if (isExist) {
+      return
+    }
+
+    else {
+      carts.forEach(hour => { totalCreditHour = totalCreditHour + hour.credit })
+      const remainingValue = 20 - totalCreditHour;
+
+
+      if (totalCreditHour > 20) {
+        return
+      } else {
+        setTotalCreditHour(totalCreditHour);
+
+        setRemaining(remainingValue)
+
+        const newCarts = [...carts, card];
+        setCarts(newCarts)
+      }
+    }
   }
-  // const handleTotalCreditHour= hour=>{
-  //   console.log('houre');
-  // }
 
   return (
     <>
@@ -29,8 +44,9 @@ function App() {
       </header>
       <main className='md:flex gap-8'>
         <Cards handleAddToCarts={handleAddToCarts}  ></Cards>
-        <Carts carts={carts} totalCreditHour={totalCreditHour}></Carts>
+        <Carts carts={carts} totalCreditHour={totalCreditHour} remaining={remaining}></Carts>
       </main>
+
     </>
   )
 }

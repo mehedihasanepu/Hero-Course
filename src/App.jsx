@@ -10,20 +10,20 @@ function App() {
   const [carts, setCarts] = useState([])
   const [totalCreditHour, setTotalCreditHour] = useState(0)
   const [remaining, setRemaining] = useState(20)
-  const [totalPrices.setTotalPrices] = useState(0)
+  const [totalPrices, setTotalPrices] = useState(0)
 
 
   const handleAddToCarts = card => {
     const isExist = carts.find((course) => course.id == card.id);
     let totalCreditHour = card.credit;
-    let coursePrice = carts.price;
+    let coursePrice = card.price;
 
     if (isExist) {
       return toast.warning("This course already added");
     }
 
     else {
-      carts.forEach(hour => { totalCreditHour = totalCreditHour + hour.credit; coursePrice = coursePrice + hour.price })
+      carts.forEach(hour => { totalCreditHour = totalCreditHour + hour.credit; coursePrice = coursePrice + hour.price; })
       const remainingValue = 20 - totalCreditHour;
 
 
@@ -33,6 +33,7 @@ function App() {
         setTotalCreditHour(totalCreditHour);
         setRemaining(remainingValue)
         setTotalPrices(coursePrice)
+
         const newCarts = [...carts, card];
         setCarts(newCarts)
 
@@ -47,7 +48,7 @@ function App() {
       </header>
       <main className='md:flex gap-8'>
         <Cards handleAddToCarts={handleAddToCarts}  ></Cards>
-        <Carts carts={carts} totalCreditHour={totalCreditHour} remaining={remaining}></Carts>
+        <Carts carts={carts} totalCreditHour={totalCreditHour} remaining={remaining} totalPrices={totalPrices}></Carts>
       </main>
       <ToastContainer></ToastContainer>
     </>

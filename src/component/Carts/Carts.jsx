@@ -1,7 +1,7 @@
 import Cart from "../Cart/Cart";
 import PropTypes from 'prop-types';
 
-const Carts = ({ carts }) => {
+const Carts = ({ carts ,totalCreditHour}) => {
     return (
         <div className="mt-10">
             <div  >
@@ -12,12 +12,13 @@ const Carts = ({ carts }) => {
                     carts.map((cart, idx) => <Cart key={idx} cart={cart} idx={idx} ></Cart>)
                 }
                 </div>
-                <h5 className="text-xl font-semibold py-4 border-b-2 border-gray-300">Total Credit Hour : </h5>
+                <h5 className="text-xl font-semibold py-4 border-b-2 border-gray-300">Total Credit Hour :{totalCreditHour} </h5>
             </div>
         </div>
     );
 };
 Carts.propTypes={
-    carts: PropTypes.array.isRequired
+    carts: PropTypes.array.isRequired,
+    totalCreditHour:PropTypes.number.isRequired
 }
 export default Carts;

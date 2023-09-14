@@ -1,7 +1,7 @@
 import { FiDollarSign, FiBookOpen } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 
-const Card = ({ card, handleAddToCarts }) => {
+const Card = ({ card, handleAddToCarts}) => {
     const { cover, title, details, price, credit } = card;
     return (
         <div >
@@ -18,7 +18,7 @@ const Card = ({ card, handleAddToCarts }) => {
                             <p>Credit: {credit}hr</p>
                         </div>
                         <div className="card-actions">
-                            <button className="py-2 rounded-lg text-white hover:bg-[#5059ff] bg-[#2F80ED] w-full" onClick={() => handleAddToCarts(card)}>Buy Now  </button>
+                            <button className="py-2 rounded-lg text-white hover:bg-[#5059ff] bg-[#2F80ED] w-full" onClick={() => handleAddToCarts(card)}>Select</button>
                         </div>
                     </div>
                 </div>

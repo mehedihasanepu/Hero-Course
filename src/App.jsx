@@ -6,19 +6,30 @@ import Carts from './component/Carts/Carts'
 
 function App() {
   const [carts, setCarts] = useState([])
+  const [totalCreditHour, setTotalCreditHour]=useState(0)
+
+
   const handleAddToCarts = card => {
+    let totalCreditHour = card.credit;
+    carts.forEach(hour => { totalCreditHour = totalCreditHour+ hour.credit })
+    setTotalCreditHour(totalCreditHour);
+    console.log(totalCreditHour);
+
     const newCarts = [...carts, card];
     setCarts(newCarts)
   }
-  console.log(carts.length);
+  // const handleTotalCreditHour= hour=>{
+  //   console.log('houre');
+  // }
+
   return (
     <>
       <header>
         <h1 className='text-4xl font-bold text-center py-10'>Course Registration</h1>
       </header>
       <main className='md:flex gap-8'>
-        <Cards handleAddToCarts={handleAddToCarts}></Cards>
-        <Carts carts={carts}></Carts>
+        <Cards handleAddToCarts={handleAddToCarts}  ></Cards>
+        <Carts carts={carts} totalCreditHour={totalCreditHour}></Carts>
       </main>
     </>
   )

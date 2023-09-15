@@ -18,7 +18,8 @@ const Card = ({ card, handleAddToCarts}) => {
                             <p>Credit: {credit}hr</p>
                         </div>
                         <div className="card-actions">
-                            <button className="py-2 rounded-lg font-semibold text-white hover:bg-[#5059ff] bg-[#2F80ED] w-full" onClick={() => handleAddToCarts(card)}>Select</button>
+                            <button className="py-2 rounded-lg font-semibold text-white hover:bg-[#5059ff] bg-[#2F80ED] w-full" 
+                            onClick={() => handleAddToCarts(card)}>Select</button>
                         </div>
                     </div>
                 </div>
